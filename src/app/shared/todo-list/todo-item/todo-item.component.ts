@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export interface TodoItem {
-  id: number;
+  id: string;
   done: boolean;
   title: string;
 }
 
 export interface TodoItemEvent {
-  id: number;
+  id: string;
   done: boolean;
 }
 
