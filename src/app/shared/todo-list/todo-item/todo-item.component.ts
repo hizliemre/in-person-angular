@@ -21,9 +21,14 @@ export interface TodoItemEvent {
 export class TodoItemComponent {
   @Input() public item!: TodoItem;
   @Output() public valueChange = new EventEmitter<TodoItemEvent>();
+  @Output() public itemRemove = new EventEmitter<string>();
 
   public valueChanged(event: Event): void {
     const element = event.target as HTMLInputElement;
     this.valueChange.emit({ id: this.item.id, done: element.checked });
+  }
+
+  public remove(id: string): void {
+    this.itemRemove.next(id);
   }
 }
