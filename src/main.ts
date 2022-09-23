@@ -9,6 +9,7 @@ import { NgxsComponent } from './app/ngxs/ngxs.component';
 import { WelcomeComponent } from './app/welcome/welcome.component';
 
 import { provideState, provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import * as fromReducer from './app/ngrx/+state/reducer';
 import { environment } from './environments/environment';
 
@@ -29,7 +30,8 @@ const routes: Routes = [
     path: 'ngrx',
     component: NgrxComponent,
     providers: [
-      provideState(fromReducer.featureKey, fromReducer.reducer)
+      // provideState(fromReducer.featureKey, fromReducer.reducer),
+      provideState(fromReducer.feature)
     ]
   },
   {
@@ -45,6 +47,7 @@ const routes: Routes = [
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(RouterModule.forRoot(routes)),
-    provideStore()
+    provideStore(),
+    provideStoreDevtools()
   ],
 })

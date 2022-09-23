@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { Guid } from 'guid-typescript';
 import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 import { todoListActions } from './actions';
@@ -17,7 +17,7 @@ const initialValue: NgrxState = {
 }
 
 
-export const reducer = createReducer(
+const reducer = createReducer(
   initialValue,
   on(todoListActions.add, (state, action) => {
     let newState = { ...state };
@@ -51,3 +51,8 @@ export const reducer = createReducer(
     return newState;
   }),
 )
+
+export const feature = createFeature({
+  name: featureKey,
+  reducer
+})
