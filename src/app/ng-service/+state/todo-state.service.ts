@@ -29,6 +29,7 @@ export class TodoStateService {
     if (!updated) return;
     updated.done = $event.done;
     this._store$.next(newState);
+    alert('updated');
   }
 
   public remove(id: string): void {
@@ -36,11 +37,13 @@ export class TodoStateService {
     let index = newState.items.findIndex((m) => m.id === id);
     newState.items.splice(index, 1);
     this._store$.next(newState);
+    alert('removed');
   }
 
   public add(item: TodoItem): void {
     const newState = { ...this._store$.value };
     newState.items.push(item);
     this._store$.next(newState);
+    alert('added');
   }
 }
