@@ -15,6 +15,4 @@ export class NgServiceComponent {
 
   constructor(public readonly state: TodoStateService) { }
 
-
-
 }
