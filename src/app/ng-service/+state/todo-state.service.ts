@@ -37,4 +37,10 @@ export class TodoStateService {
     newState.items.splice(index, 1);
     this._store$.next(newState);
   }
+
+  public add(item: TodoItem): void {
+    const newState = { ...this._store$.value };
+    newState.items.push(item);
+    this._store$.next(newState);
+  }
 }
