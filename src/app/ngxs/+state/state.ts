@@ -28,4 +28,29 @@ export class NgxsTodoListState {
     ctx.setState({ ...state, items: [...state.items, action.payload] })
   }
 
+  @Action(TodoListActions.Remove)
+  remove(ctx: StateContext<NgxsState>, action: TodoListActions.Remove): void {
+    const state = ctx.getState();
+    const index = state.items.findIndex((m) => m.id === action.payload);
+    const list = [...state.items];
+    list.splice(index, 1);
+    ctx.setState({ ...state, items: list })
+  }
+
+  @Action(TodoListActions.Update)
+  update(ctx: StateContext<NgxsState>, action: TodoListActions.Update): void {
+    const state = ctx.getState();
+    let newState = { ...state };
+    let updatedItems = newState.items.reduce((prev, curr) => ({ ...prev, [curr.id]: curr }), {} as any);
+    updatedItems = {
+      ...updatedItems,
+      [action.payload.id]: { ...updatedItems[action.payload.id], done: action.payload.done }
+    };
+    newState = {
+      ...newState,
+      items: Object.values(updatedItems)
+    }
+    ctx.setState(newState)
+  }
+
 }
