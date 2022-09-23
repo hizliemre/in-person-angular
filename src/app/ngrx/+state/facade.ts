@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TodoItem, TodoItemEvent } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 import { todoListActions } from './actions';
+import { selectItems } from './selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoStateFacade {
+
+  items$ = this._store.select(selectItems);
 
   constructor(private readonly _store: Store) { }
 

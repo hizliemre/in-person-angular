@@ -3,7 +3,9 @@ import { Guid } from 'guid-typescript';
 import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 import { todoListActions } from './actions';
 
-interface NgrxState {
+export const featureKey = 'todoState';
+
+export interface NgrxState {
   items: TodoItem[];
 }
 
@@ -18,21 +20,34 @@ const initialValue: NgrxState = {
 export const reducer = createReducer(
   initialValue,
   on(todoListActions.add, (state, action) => {
-    const newState = { ...state };
-    newState.items.push(action.item);
+    let newState = { ...state };
+    newState = {
+      ...newState,
+      items: [...newState.items, action.item]
+    }
     return newState;
   }),
   on(todoListActions.update, (state, action) => {
-    const newState = { ...state };
-    let updated = newState.items.find((m) => m.id === action.event.id);
-    if (!updated) return state;
-    updated.done = action.event.done;
+    let newState = { ...state };
+    let updatedItems = newState.items.reduce((prev, curr) => ({ ...prev, [curr.id]: curr }), {} as any);
+    updatedItems = {
+      ...updatedItems,
+      [action.event.id]: { ...updatedItems[action.event.id], done: action.event.done }
+    };
+    newState = {
+      ...newState,
+      items: Object.values(updatedItems)
+    }
     return newState;
   }),
   on(todoListActions.remove, (state, action) => {
-    const newState = { ...state };
-    let index = newState.items.findIndex((m) => m.id === action.id);
-    newState.items.splice(index, 1);
-    return state;
+    const newStateItems = [...state.items];
+    let index = state.items.findIndex((m) => m.id === action.id);
+    newStateItems.splice(index, 1);
+    const newState = {
+      ...state,
+      items: newStateItems
+    }
+    return newState;
   }),
 )
