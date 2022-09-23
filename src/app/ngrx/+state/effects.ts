@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { todoListActions } from './actions';
 
 @Injectable({
@@ -12,22 +12,23 @@ export class NgrxEffects {
 
   $add = createEffect(() => this.actions$.pipe(
     ofType(todoListActions.add),
-    tap(() => {
-      alert('added')
-    })
-  ), { dispatch: false })
+    map(({ type }) => todoListActions.alert({ actionType: type }))
+  ))
 
   $update = createEffect(() => this.actions$.pipe(
     ofType(todoListActions.update),
-    tap(() => {
-      alert('updated')
-    })
-  ), { dispatch: false })
+    map(({ type }) => todoListActions.alert({ actionType: type }))
+  ))
 
   $remove = createEffect(() => this.actions$.pipe(
     ofType(todoListActions.remove),
-    tap(() => {
-      alert('removed')
+    map(({ type }) => todoListActions.alert({ actionType: type }))
+  ))
+
+  $alert = createEffect(() => this.actions$.pipe(
+    ofType(todoListActions.alert),
+    tap(({ actionType }) => {
+      alert(actionType)
     })
   ), { dispatch: false })
 
