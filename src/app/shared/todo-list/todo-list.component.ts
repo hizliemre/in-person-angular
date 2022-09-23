@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Guid } from 'guid-typescript';
 import { TodoItem, TodoItemComponent, TodoItemEvent } from './todo-item/todo-item.component';
 
 @Component({
@@ -11,9 +12,17 @@ import { TodoItem, TodoItemComponent, TodoItemEvent } from './todo-item/todo-ite
 export class TodoListComponent {
 
   @Input() items!: TodoItem[];
+  @Output() itemAdded = new EventEmitter<TodoItem>();
+  @Output() itemUpdated = new EventEmitter<TodoItemEvent>();
 
   public itemValueChanged($event: TodoItemEvent): void {
-    console.log($event);
+    this.itemUpdated.emit($event);
+  }
+
+  public add(todoTitle: string): void {
+    const item: TodoItem = { id: Guid.create().toString(), title: todoTitle, done: false };
+    this.itemAdded.emit(item);
+
   }
 
 }

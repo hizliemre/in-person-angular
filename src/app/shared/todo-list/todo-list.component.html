@@ -1,8 +1,10 @@
 <div class="flex flex-col gap-2">
   <div class="w-full flex flex-row border p-4 gap-2">
     <input type="text"
+           #todoTitle
            class="border flex-1 px-2">
-    <button class="border bg-slate-700 text-white rounded px-4 hover:bg-slate-200 hover:text-slate-800">Add</button>
+    <button (click)="add(todoTitle.value)"
+            class="border bg-slate-700 text-white rounded px-4 hover:bg-slate-200 hover:text-slate-800">Add</button>
   </div>
   <app-todo-item *ngFor="let item of items"
                  (valueChange)="itemValueChanged($event)"
