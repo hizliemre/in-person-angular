@@ -11,6 +11,8 @@ import { WelcomeComponent } from './app/welcome/welcome.component';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 // import * as fromReducer from './app/ngrx/+state/reducer';
+import { provideEffects } from '@ngrx/effects';
+import { NgrxEffects } from './app/ngrx/+state/effects';
 import * as fromReducer from './app/ngrx/+state/entity-reducer';
 import { environment } from './environments/environment';
 
@@ -32,7 +34,8 @@ const routes: Routes = [
     component: NgrxComponent,
     providers: [
       // provideState(fromReducer.featureKey, fromReducer.reducer),
-      provideState(fromReducer.feature)
+      provideState(fromReducer.feature),
+      provideEffects([NgrxEffects])
     ]
   },
   {
@@ -49,6 +52,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(RouterModule.forRoot(routes)),
     provideStore(),
+    provideEffects([]),
     provideStoreDevtools()
   ],
 })
