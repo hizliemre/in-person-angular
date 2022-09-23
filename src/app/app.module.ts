@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { AppComponent2 } from './app.component';
+import { CustomComponent } from './custom/custom.component';
 import { ElfComponent } from './elf/elf.component';
 import { NgServiceComponent } from './ng-service/ng-service.component';
 import { NgxsComponent } from './ngxs/ngxs.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'elf',
     component: ElfComponent
+  },
+  {
+    path: 'custom',
+    component: CustomComponent
   }
 ];
 
