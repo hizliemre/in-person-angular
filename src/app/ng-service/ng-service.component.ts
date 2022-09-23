@@ -2,7 +2,6 @@ import { Component, HostBinding } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { TodoItem } from '../shared/todo-list/todo-item/todo-item.component';
 import { TodoListComponent } from '../shared/todo-list/todo-list.component';
-import { TodoStateService } from './+state/todo-state.service';
 
 @Component({
   selector: 'app-ng-service',
@@ -18,7 +17,5 @@ export class NgServiceComponent {
     { id: Guid.create().toString(), done: true, title: 'Lorem ipsum dolor sit amet' },
     { id: Guid.create().toString(), done: true, title: 'Lorem ipsum dolor sit amet' },
     { id: Guid.create().toString(), done: true, title: 'Lorem ipsum dolor sit amet' }]
-
-  constructor(public readonly state: TodoStateService) { }
 
 }
