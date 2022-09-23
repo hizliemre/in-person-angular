@@ -1,1 +1,1 @@
-<app-todo-list [items]="items"></app-todo-list>
+<app-todo-list [items]="(state.items$ | async)!"></app-todo-list>
