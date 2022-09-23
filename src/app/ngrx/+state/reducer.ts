@@ -32,6 +32,7 @@ export const reducer = createReducer(
     let updatedItems = newState.items.reduce((prev, curr) => ({ ...prev, [curr.id]: curr }), {} as any);
     updatedItems = {
       ...updatedItems,
+      [action.event.id]: { ...updatedItems[action.event.id], done: action.event.done }
     };
     newState = {
       ...newState,
