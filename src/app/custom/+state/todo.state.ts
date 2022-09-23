@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { Subject } from 'rxjs';
+import { merge, Observable, Subject } from 'rxjs';
+import { shareReplay, startWith } from 'rxjs/operators';
 import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 
 interface Action {
@@ -23,9 +24,27 @@ const defaultState: TodoState = {
 @Injectable({ providedIn: 'root' })
 export class TodoStore {
 
+  constructor() {
+    this.state$.subscribe();
+  }
+
   /**
    * Actions
    */
   actions$: Subject<Action> = new Subject<Action>();
 
+  /**
+   * Dispatcher
+   */
+  dispatcher$: Observable<Action> =
+    merge(this.actions$);
+
+  /**
+   * State Reducer
+   */
+  state$: Observable<TodoState> =
+    this.dispatcher$.pipe(
+      startWith(defaultState as any),
+      shareReplay({ refCount: true, bufferSize: 1 })
+    );
 }
