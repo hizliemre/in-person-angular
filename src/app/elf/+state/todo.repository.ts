@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createStore } from '@ngneat/elf';
-import {
-  selectAllEntities, withEntities
-} from '@ngneat/elf-entities';
+import { addEntities, selectAllEntities, withEntities } from '@ngneat/elf-entities';
 import { Guid } from 'guid-typescript';
 import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 
@@ -19,4 +17,9 @@ const store = createStore(
 @Injectable({ providedIn: 'root' })
 export class TodosRepository {
   public items$ = store.pipe(selectAllEntities());
+
+  public add(item: TodoItem) {
+    store.update(addEntities(item));
+  }
+
 }
