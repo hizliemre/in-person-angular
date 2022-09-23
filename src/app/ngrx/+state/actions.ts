@@ -5,15 +5,15 @@ import { TodoItem, TodoItemEvent } from 'src/app/shared/todo-list/todo-item/todo
 export const todoListActions = createActionGroup({
   source: '[TO DO LIST]',
   events: {
-    add: props<TodoItem>(),
-    update: props<TodoItemEvent>(),
+    add: props<{ item: TodoItem }>(),
+    update: props<{ event: TodoItemEvent }>(),
     remove: props<{ id: string }>()
   }
 });
 
 // old fashion way
-const add = createAction('[TO DO List] Add', props<TodoItem>())
-const update = createAction('[TO DO List] Update', props<TodoItemEvent>())
+const add = createAction('[TO DO List] Add', props<{ item: TodoItem }>())
+const update = createAction('[TO DO List] Update', props<{ event: TodoItemEvent }>())
 const remove = createAction('[TO DO List] Remove', props<{ id: string }>())
 
 export const todoListActions2 = {
