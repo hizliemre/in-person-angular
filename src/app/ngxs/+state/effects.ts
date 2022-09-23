@@ -12,7 +12,6 @@ export class NgxsEffects {
 
   public init(): void {
     this._actions$.pipe(
-      tap((a) => console.log(a)),
       ofActionSuccessful(TodoListActions.Add),
       tap(() => alert('added')),
     ).subscribe();
