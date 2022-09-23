@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { merge, Observable, Subject } from 'rxjs';
-import { shareReplay, startWith } from 'rxjs/operators';
+import { map, shareReplay, startWith } from 'rxjs/operators';
 import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 
 interface Action {
@@ -47,4 +47,11 @@ export class TodoStore {
       startWith(defaultState as any),
       shareReplay({ refCount: true, bufferSize: 1 })
     );
+
+  /**
+   * Selectors
+   */
+  items$: Observable<TodoItem[]> =
+    this.state$.pipe(map((state) => state.items));
+
 }
