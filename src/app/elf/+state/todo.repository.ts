@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { createStore } from '@ngneat/elf';
-import { addEntities, selectAllEntities, withEntities } from '@ngneat/elf-entities';
+import { addEntities, deleteEntities, selectAllEntities, updateEntities, withEntities } from '@ngneat/elf-entities';
 import { Guid } from 'guid-typescript';
-import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
+import { TodoItem, TodoItemEvent } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 
 const store = createStore(
   { name: 'todos' },
@@ -22,4 +22,16 @@ export class TodosRepository {
     store.update(addEntities(item));
   }
 
+  public update($event: TodoItemEvent) {
+    store.update(
+      updateEntities($event.id, (entity) => ({
+        ...entity,
+        done: $event.done
+      }))
+    );
+  }
+
+  public remove(id: string) {
+    store.update(deleteEntities(id));
+  }
 }
