@@ -1,35 +1,38 @@
-<nav class="flex-shrink-0 h-20 block bg-slate-600 flex flex-row justify-between items-center px-8">
+<nav class="flex flex-row items-center justify-between flex-shrink-0 block h-20 px-8 bg-slate-600">
   <a class="flex flex-row items-center justify-start gap-2"
      [routerLink]="'/'">
-    <img class="h-14 border rounded-md border-slate-500"
+    <img class="border rounded-md h-14 border-slate-500"
          src="/assets/logo.png" />
-    <span class="text-white text-2xl">Angular State Management</span>
+    <span class="text-2xl text-white">Angular State Management</span>
   </a>
   <ul class="flex flex-row gap-4">
-    <li class="text-slate-700 font-semibold">
+    <li class="font-semibold text-slate-700">
       <a [routerLink]="'ng-service'"
-         class="flex flex-row gap-1 border shadow-md bg-white px-2 py-1 rounded hover:bg-slate-200 hover:text-slate-600 cursor-pointer">
+         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
         <img src="/assets/angular.png"
              class="w-6" />
         ng service
       </a>
     </li>
-    <li class="text-slate-700 font-semibold">
-      <a class="flex flex-row gap-1 border shadow-md bg-white px-2 py-1 rounded hover:bg-slate-200 hover:text-slate-600 cursor-pointer">
+    <li class="font-semibold text-slate-700">
+      <a [routerLink]="'ngrx'"
+         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
         <img src="/assets/ngrx.svg"
              class="w-6" />
         ngrx
       </a>
     </li>
-    <li class="text-slate-700 font-semibold">
-      <a class="flex flex-row gap-1 border shadow-md bg-white px-2 py-1 rounded hover:bg-slate-200 hover:text-slate-600 cursor-pointer">
+    <li class="font-semibold text-slate-700">
+      <a [routerLink]="'ngxs'"
+         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
         <img src="/assets/ngxs.webp"
              class="w-6" />
         ngxs
       </a>
     </li>
-    <li class="text-slate-700 font-semibold">
-      <a class="flex flex-row gap-1 border shadow-md bg-white px-2 py-1 rounded hover:bg-slate-200 hover:text-slate-600 cursor-pointer">
+    <li class="font-semibold text-slate-700">
+      <a [routerLink]="'elf'"
+         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
         <img src="/assets/elf.png"
              class="w-6" />
         elf

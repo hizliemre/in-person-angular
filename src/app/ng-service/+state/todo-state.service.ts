@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { BehaviorSubject, map } from 'rxjs';
-import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
+import { TodoItem, TodoItemEvent } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 
 interface NgServiceState {
   items: TodoItem[];
@@ -22,4 +22,15 @@ export class TodoStateService {
   private readonly _store$ = new BehaviorSubject<NgServiceState>(initialValue);
 
   public items$ = this._store$.pipe(map((state) => state.items));
+
+  public update($event: TodoItemEvent): void {
+    const currentState = this._store$.value;
+    const updatedItems = currentState.items.reduce((prev, curr) => ({ ...prev, [curr.id]: { ...curr, ...$event } }), {});
+    const newState = {
+      ...currentState,
+      items: Object.values(updatedItems) as TodoItem[]
+    }
+    console.log(newState);
+    this._store$.next(newState);
+  }
 }
