@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { merge, Observable, Subject } from 'rxjs';
-import { map, scan, shareReplay, startWith } from 'rxjs/operators';
+import { merge, MonoTypeOperatorFunction, Observable, Subject } from 'rxjs';
+import { filter, map, scan, shareReplay, startWith, tap } from 'rxjs/operators';
 import { TodoItem, TodoItemEvent } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 
 interface Action {
@@ -34,10 +34,40 @@ export class TodoStore {
   actions$: Subject<Action> = new Subject<Action>();
 
   /**
+  * Effects
+  */
+  add$: Observable<Action> =
+    this.actions$.pipe(
+      ofType('add'),
+      tap(() => {
+        alert('added');
+      }),
+      filter(() => false)
+    );
+
+  update$: Observable<Action> =
+    this.actions$.pipe(
+      ofType('update'),
+      tap(() => {
+        alert('updated');
+      }),
+      filter(() => false)
+    );
+
+  remove$: Observable<Action> =
+    this.actions$.pipe(
+      ofType('remove'),
+      tap(() => {
+        alert('removed');
+      }),
+      filter(() => false)
+    );
+
+  /**
    * Dispatcher
    */
   dispatcher$: Observable<Action> =
-    merge(this.actions$);
+    merge(this.actions$, this.add$, this.update$, this.remove$);
 
   /**
    * State Reducer
@@ -104,4 +134,8 @@ export class TodoStore {
     this.actions$.next(action);
   }
 
+}
+
+function ofType<T extends Action>(type: string): MonoTypeOperatorFunction<T> {
+  return filter((_) => type === _.type);
 }
