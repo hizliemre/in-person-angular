@@ -8,7 +8,9 @@ export const featureKey = 'todoState';
 
 export interface NgrxState extends EntityState<TodoItem> { }
 
-export const entityAdapter = createEntityAdapter();
+export const entityAdapter = createEntityAdapter<TodoItem>({
+  selectId: (item) => item.id
+});
 
 const defaultItems = [
   { id: Guid.create().toString(), done: true, title: 'Lorem ipsum dolor sit amet' },
@@ -17,7 +19,7 @@ const defaultItems = [
 ];
 
 const initialValue = entityAdapter.getInitialState({
-  entities: defaultItems,
+  entities: defaultItems.reduce((prev, curr) => ({ ...prev, [curr.id]: curr }), {}),
   ids: defaultItems.map((m) => m.id)
 });
 
