@@ -3,7 +3,7 @@ import { TodoItem, TodoItemEvent } from 'src/app/shared/todo-list/todo-item/todo
 
 // released v13.2.0
 export const todoListActions = createActionGroup({
-  source: '[TO DO LIST]',
+  source: 'TO DO LIST',
   events: {
     add: props<{ item: TodoItem }>(),
     update: props<{ event: TodoItemEvent }>(),
