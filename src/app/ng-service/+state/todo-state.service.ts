@@ -30,4 +30,11 @@ export class TodoStateService {
     updated.done = $event.done;
     this._store$.next(newState);
   }
+
+  public remove(id: string): void {
+    const newState = { ...this._store$.value };
+    let index = newState.items.findIndex((m) => m.id === id);
+    newState.items.splice(index, 1);
+    this._store$.next(newState);
+  }
 }
