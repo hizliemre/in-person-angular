@@ -24,13 +24,10 @@ export class TodoStateService {
   public items$ = this._store$.pipe(map((state) => state.items));
 
   public update($event: TodoItemEvent): void {
-    const currentState = this._store$.value;
-    const updatedItems = currentState.items.reduce((prev, curr) => ({ ...prev, [curr.id]: { ...curr, ...$event } }), {});
-    const newState = {
-      ...currentState,
-      items: Object.values(updatedItems) as TodoItem[]
-    }
-    console.log(newState);
+    const newState = { ...this._store$.value };
+    let updated = newState.items.find((m) => m.id === $event.id);
+    if (!updated) return;
+    updated.done = $event.done;
     this._store$.next(newState);
   }
 }
