@@ -18,5 +18,5 @@ const store = createStore(
 
 @Injectable({ providedIn: 'root' })
 export class TodosRepository {
-  items$ = store.pipe(selectAllEntities());
+  public items$ = store.pipe(selectAllEntities());
 }
