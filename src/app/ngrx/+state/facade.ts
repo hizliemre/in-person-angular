@@ -11,7 +11,7 @@ export class TodoStateFacade {
   constructor(private readonly _store: Store) { }
 
   public update($event: TodoItemEvent): void {
-    this._store.dispatch(todoListActions.update($event));
+    this._store.dispatch(todoListActions.update({ event: $event }));
   }
 
   public remove(id: string): void {
@@ -19,7 +19,7 @@ export class TodoStateFacade {
   }
 
   public add(item: TodoItem): void {
-    this._store.dispatch(todoListActions.add(item));
+    this._store.dispatch(todoListActions.add({ item }));
   }
 
 }
