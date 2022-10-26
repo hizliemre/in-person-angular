@@ -12,7 +12,6 @@ import { TodosService } from './+state/todo.service';
 })
 export class AkitaComponent {
 
-
   @HostBinding('class') classList = 'flex justify-center p-16 items-start w-full h-full'
 
   constructor(public readonly query: TodosQuery, public readonly service: TodosService) { }
