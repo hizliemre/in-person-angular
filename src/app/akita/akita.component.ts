@@ -5,12 +5,12 @@ import { TodoItem } from '../shared/todo-list/todo-item/todo-item.component';
 import { TodoListComponent } from '../shared/todo-list/todo-list.component';
 
 @Component({
-  selector: 'app-ngrx',
-  templateUrl: './ngrx.component.html',
+  selector: 'app-akita',
+  templateUrl: './akita.component.html',
   standalone: true,
   imports: [CommonModule, TodoListComponent],
 })
-export class NgrxComponent {
+export class AkitaComponent {
 
 
   @HostBinding('class') classList = 'flex justify-center p-16 items-start w-full h-full'

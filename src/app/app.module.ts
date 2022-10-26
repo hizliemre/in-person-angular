@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
+import { AkitaComponent } from './akita/akita.component';
 import { AppComponent2 } from './app.component';
 import { CustomComponent } from './custom/custom.component';
 import { ElfComponent } from './elf/elf.component';
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'elf',
     component: ElfComponent
+  },
+  {
+    path: 'akita',
+    component: AkitaComponent
   },
   {
     path: 'custom',
