@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { Guid } from 'guid-typescript';
 import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
@@ -13,6 +14,8 @@ const initialState: TodosState = {
   entities: initialEntities.reduce((acc, item) => ({ ...acc, [item.id]: item }), {}),
   ids: initialEntities.map(item => item.id)
 }
+
+@Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'todos' })
 export class TodosStore extends EntityStore<TodosState> {
   constructor() {
