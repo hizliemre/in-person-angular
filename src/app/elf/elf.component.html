@@ -1,1 +1,4 @@
-<app-todo-list [items]="items"></app-todo-list>
+<app-todo-list [items]="(state.items$ | async)!"
+               (itemAdded)="state.add($event)"
+               (itemUpdated)="state.update($event)"
+               (itemRemoved)="state.remove($event)"></app-todo-list>

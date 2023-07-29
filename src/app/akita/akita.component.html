@@ -1,0 +1,4 @@
+<app-todo-list [items]="(query.selectAll$ | async)!"
+               (itemAdded)="service.add($event)"
+               (itemUpdated)="service.update($event)"
+               (itemRemoved)="service.remove($event)"></app-todo-list>

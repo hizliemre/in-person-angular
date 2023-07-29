@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding } from '@angular/core';
 import { TodoListComponent } from '../shared/todo-list/todo-list.component';
-import { TodoStateFacade } from './+state/facade';
+import { TodosQuery } from './+state/todo.query';
+import { TodosService } from './+state/todo.service';
 
 @Component({
-  selector: 'app-ngrx',
-  templateUrl: './ngrx.component.html',
+  selector: 'app-akita',
+  templateUrl: './akita.component.html',
   standalone: true,
   imports: [CommonModule, TodoListComponent],
 })
-export class NgrxComponent {
+export class AkitaComponent {
 
   @HostBinding('class') classList = 'flex justify-center p-16 items-start w-full h-full'
 
-  constructor(public readonly state: TodoStateFacade) { }
+  constructor(public readonly query: TodosQuery, public readonly service: TodosService) { }
+
 }

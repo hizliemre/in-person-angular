@@ -14,6 +14,7 @@ export class TodoListComponent {
   @Input() items!: TodoItem[];
   @Output() itemAdded = new EventEmitter<TodoItem>();
   @Output() itemUpdated = new EventEmitter<TodoItemEvent>();
+  @Output() itemRemoved = new EventEmitter<string>();
 
   public itemValueChanged($event: TodoItemEvent): void {
     this.itemUpdated.emit($event);
@@ -22,7 +23,10 @@ export class TodoListComponent {
   public add(todoTitle: string): void {
     const item: TodoItem = { id: Guid.create().toString(), title: todoTitle, done: false };
     this.itemAdded.emit(item);
+  }
 
+  public remove(id: string): void {
+    this.itemRemoved.emit(id);
   }
 
 }
