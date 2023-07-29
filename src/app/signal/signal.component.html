@@ -1,1 +1,6 @@
-<app-todo-list></app-todo-list>
+<app-todo-list
+  [items]="state.items()"
+  (itemUpdated)="state.update($event)"
+  (itemRemoved)="state.remove($event)"
+  (itemAdded)="state.add($event)"
+></app-todo-list>

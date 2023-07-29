@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, computed, effect, signal } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { TodoItem } from 'src/app/shared/todo-list/todo-item/todo-item.component';
+import { TodoItem, TodoItemEvent } from 'src/app/shared/todo-list/todo-item/todo-item.component';
 
 interface SignalState {
   items: TodoItem[];
@@ -18,5 +18,27 @@ const initialValue: SignalState = {
 })
 export class TodoStateService {
 
+  private readonly _state = signal(initialValue);
+
+  public readonly items = computed(() => this._state().items);
+
+  private _added$ = effect(() => {
+    console.log('Added: ', this._state().items)
+  })
+
+  public update($event: TodoItemEvent): void {
+    this._state.update((state) => ({
+      ...state,
+      items: state.items.map((item) => item.id === $event.id ? { ...item, done: $event.done } : item)
+    }));
+  }
+
+  public remove(id: string): void {
+    this._state.update((state) => ({ ...state, items: state.items.filter((item) => item.id !== id) }));
+  }
+
+  public add(item: TodoItem): void {
+    this._state.update((state) => ({ ...state, items: [...state.items, item] }));
+  }
 
 }
