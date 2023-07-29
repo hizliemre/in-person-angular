@@ -4,8 +4,8 @@ import { TodoListComponent } from '../shared/todo-list/todo-list.component';
 import { TodoStateService } from './+state/todo-state.service';
 
 @Component({
-  selector: 'app-ng-signal',
-  templateUrl: './ng-signal.component.html',
+  selector: 'app-signal',
+  templateUrl: './signal.component.html',
   standalone: true,
   imports: [CommonModule, TodoListComponent]
 })
