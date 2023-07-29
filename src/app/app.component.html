@@ -1,40 +1,56 @@
-<nav class="flex flex-row items-center justify-between flex-shrink-0 block h-20 px-8 bg-slate-600">
-  <a class="flex flex-row items-center justify-start gap-2"
-     [routerLink]="'/'">
-    <img class="border rounded-md h-14 border-slate-500"
-         src="/assets/logo.png" />
+<nav
+  class="flex flex-row items-center justify-between flex-shrink-0 block h-20 px-8 bg-slate-600"
+>
+  <a class="flex flex-row items-center justify-start gap-2" [routerLink]="'/'">
+    <img
+      class="border rounded-md h-14 border-slate-500"
+      src="/assets/logo.png"
+    />
     <span class="text-2xl text-white">Angular State Management</span>
   </a>
   <ul class="flex flex-row gap-4">
     <li class="font-semibold text-slate-700">
-      <a [routerLink]="'ng-service'"
-         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
-        <img src="/assets/angular.png"
-             class="w-6" />
+      <a
+        [routerLink]="'ng-service'"
+        class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600"
+      >
+        <img src="/assets/angular.png" class="w-6" />
         ng service
       </a>
     </li>
     <li class="font-semibold text-slate-700">
-      <a [routerLink]="'ngrx'"
-         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
-        <img src="/assets/ngrx.svg"
-             class="w-6" />
+      <a
+        [routerLink]="'signal'"
+        class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600"
+      >
+        <img src="/assets/signal.png" class="w-6" />
+        signals
+      </a>
+    </li>
+    <li class="font-semibold text-slate-700">
+      <a
+        [routerLink]="'ngrx'"
+        class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600"
+      >
+        <img src="/assets/ngrx.svg" class="w-6" />
         ngrx
       </a>
     </li>
     <li class="font-semibold text-slate-700">
-      <a [routerLink]="'ngxs'"
-         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
-        <img src="/assets/ngxs.webp"
-             class="w-6" />
+      <a
+        [routerLink]="'ngxs'"
+        class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600"
+      >
+        <img src="/assets/ngxs.webp" class="w-6" />
         ngxs
       </a>
     </li>
     <li class="font-semibold text-slate-700">
-      <a [routerLink]="'elf'"
-         class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600">
-        <img src="/assets/elf.png"
-             class="w-6" />
+      <a
+        [routerLink]="'elf'"
+        class="flex flex-row gap-1 px-2 py-1 bg-white border rounded shadow-md cursor-pointer hover:bg-slate-200 hover:text-slate-600"
+      >
+        <img src="/assets/elf.png" class="w-6" />
         elf
       </a>
     </li>

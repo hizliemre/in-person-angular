@@ -14,6 +14,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { NgrxEffects } from './app/ngrx/+state/effects';
 import * as fromReducer from './app/ngrx/+state/entity-reducer';
+import { SignalComponent } from './app/signal/ng-signal.component';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'elf',
     component: ElfComponent
+  },
+  {
+    path: 'signal',
+    component: SignalComponent
   }
 ];
 
