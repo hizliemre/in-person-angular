@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, inject } from '@angular/core';
 import { TodoListComponent } from '../shared/todo-list/todo-list.component';
 import { TodoStateService } from './+state/todo-state.service';
 
@@ -12,7 +12,5 @@ import { TodoStateService } from './+state/todo-state.service';
 export class SignalComponent {
 
   @HostBinding('class') classList = 'flex justify-center p-16 items-start w-full h-full'
-
-  constructor(public readonly state: TodoStateService) { }
-
+  public readonly state = inject(TodoStateService);
 }
